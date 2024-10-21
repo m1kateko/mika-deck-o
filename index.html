@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIKA-DECK-O Control Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="remote.css">
+</head>
+<body>
+    <div class="remote-control">
+        <div class="title">MIKA-DECK-O<sup>®</sup></div>
+        <div class="controls">
+            <div class="control-item">
+                <button class="button" id="openControl"><span class="icon">🔴</span> On/Off</button>
+            </div>
+            <div class="control-item">
+                <button class="button" id="toggleSmallScore"><span class="icon">🔍</span> Small Score</button>
+            </div>
+            <div class="control-item">
+                <button class="button" id="toggleBigScore"><span class="icon">🔎</span> Big Score</button>
+            </div>
+            <div class="control-item">
+                <button class="button" id="toggleFullScreen"><span class="icon">📺</span> Overlay</button>
+            </div>
+            <div class="control-item">
+                <button class="button" id="playButton"><span class="icon">▶️</span> Start</button>
+            </div>
+            <div class="control-item">
+                <button class="button" id="pauseButton"><span class="icon">⏸️</span> Pause</button>
+            </div>            
+            <div class="control-item">
+                <select class="dropdown" id="homeTeamAndStripSelect">
+                    <option value="" disabled selected>Select Home Team & Strip</option>
+                </select>
+            </div>
+            <div class="control-item">
+                <select class="dropdown" id="awayTeamAndStripSelect">
+                    <option value="" disabled selected>Select Away Team & Strip</option>
+                </select>
+            </div>
+            <div class="control-item goal-control">
+                <select class="dropdown goal-dropdown" id="homeGoalScorerSelect">
+                    <option value="" disabled selected>Home Goal Scorer</option>
+                    <!-- Options will be added dynamically -->
+                </select>
+                <button class="button goal-button" id="homeGoalButton">Home Goal</button>
+            </div>
+            <div class="control-item goal-control">
+                <select class="dropdown goal-dropdown" id="awayGoalScorerSelect">
+                    <option value="" disabled selected>Away Goal Scorer</option>
+                    <!-- Options will be added dynamically -->
+                </select>
+                <button class="button goal-button" id="awayGoalButton">Away Goal</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let controlWindow;
+        let playerData = []; // Store player data here
+    
+        document.getElementById('openControl').addEventListener('click', () => {
+            controlWindow = window.open('main.html', 'ControlWindow', 'width=800,height=540');
+        });
+    
+        document.getElementById('toggleFullScreen').addEventListener('click', () => {
+            if (controlWindow) {
+                controlWindow.postMessage('toggleFullScreen', '*');
+            }
+        });
+
+        document.getElementById('toggleSmallScore').addEventListener('click', () => {
+            if (controlWindow) {
+                controlWindow.postMessage('toggleSmallScore', '*');
+            }
+        });
+
+        document.getElementById('toggleBigScore').addEventListener('click', () => {
+            if (controlWindow) {
+                controlWindow.postMessage('toggleBigScore', '*');
+            }
+        });
+
+
+        document.getElementById('playButton').addEventListener('click', () => {
+            if (controlWindow) {
+                controlWindow.postMessage('play', '*');
+            }
+        });
+    
+        document.getElementById('pauseButton').addEventListener('click', () => {
+            if (controlWindow) {
+                controlWindow.postMessage('pause', '*');
+            }
+        });
+
+    
+        // Fetch team data
+        fetch('teamDatabase.json')
+            .then(response => response.json())
+            .then(data => {
+                populateTeamDropdowns(data);
+                addDropdownEventListeners(data);
+            })
+            .catch(error => console.error('Error fetching team database:', error));
+    
+        // Fetch player data
+        fetch('playerDatabase.json')
+            .then(response => response.json())
+            .then(data => {
+                playerData = data;
+            })
+            .catch(error => console.error('Error fetching player database:', error));
+    
+        function populateTeamDropdowns(teamData) {
+            const homeTeamAndStripSelect = document.getElementById('homeTeamAndStripSelect');
+            const awayTeamAndStripSelect = document.getElementById('awayTeamAndStripSelect');
+    
+            teamData.forEach(team => {
+                // Home Team Options
+                const optionHome = document.createElement('option');
+                optionHome.value = `${team.teamNo}-home`;
+                optionHome.text = `${team.teamName} (Home)`;
+                homeTeamAndStripSelect.appendChild(optionHome);
+    
+                // Away Team Options
+                const optionAway = document.createElement('option');
+                optionAway.value = `${team.teamNo}-away`;
+                optionAway.text = `${team.teamName} (Away)`;
+                homeTeamAndStripSelect.appendChild(optionAway);
+    
+                // Home Team Options for Away Dropdown
+                const optionHomeAway = document.createElement('option');
+                optionHomeAway.value = `${team.teamNo}-home`;
+                optionHomeAway.text = `${team.teamName} (Home)`;
+                awayTeamAndStripSelect.appendChild(optionHomeAway);
+    
+                // Away Team Options for Away Dropdown
+                const optionAwayAway = document.createElement('option');
+                optionAwayAway.value = `${team.teamNo}-away`;
+                optionAwayAway.text = `${team.teamName} (Away)`;
+                awayTeamAndStripSelect.appendChild(optionAwayAway);
+
+                // Home Third Options (only if third kit exists)
+        if (team.thirdColourA && team.thirdColourB) {
+            const optionHomeThird = document.createElement('option');
+            optionHomeThird.value = `${team.teamNo}-third`;
+            optionHomeThird.text = `${team.teamName} (Third)`;
+            homeTeamAndStripSelect.appendChild(optionHomeThird);
+
+            const optionAwayThird = document.createElement('option');
+            optionAwayThird.value = `${team.teamNo}-third`;
+            optionAwayThird.text = `${team.teamName} (Third)`;
+            awayTeamAndStripSelect.appendChild(optionAwayThird);
+        }
+    });
+        }
+    
+        function addDropdownEventListeners(teamData) {
+            const homeTeamAndStripSelect = document.getElementById('homeTeamAndStripSelect');
+            const awayTeamAndStripSelect = document.getElementById('awayTeamAndStripSelect');
+            const homeGoalScorerSelect = document.getElementById('homeGoalScorerSelect');
+            const awayGoalScorerSelect = document.getElementById('awayGoalScorerSelect');
+    
+            console.log('Home Goal Scorer Select:', homeGoalScorerSelect);
+            console.log('Away Goal Scorer Select:', awayGoalScorerSelect);
+    
+            homeTeamAndStripSelect.addEventListener('change', () => {
+                const [teamNo, strip] = homeTeamAndStripSelect.value.split('-');
+                const selectedTeam = teamData.find(t => t.teamNo == teamNo);
+                updateTeamInfo('home', selectedTeam, strip);
+                updateHomeGoalScorerDropdown(selectedTeam.teamName);
+            });
+    
+            awayTeamAndStripSelect.addEventListener('change', () => {
+                const [teamNo, strip] = awayTeamAndStripSelect.value.split('-');
+                const selectedTeam = teamData.find(t => t.teamNo == teamNo);
+                updateTeamInfo('away', selectedTeam, strip);
+                updateAwayGoalScorerDropdown(selectedTeam.teamName);
+            });
+    
+            function updateHomeGoalScorerDropdown(teamName) {
+                if (homeGoalScorerSelect) {
+                    homeGoalScorerSelect.innerHTML = '<option value="" disabled selected>Home Goal Scorer</option>';
+                    const players = playerData.filter(p => p.teamName === teamName);
+    
+                    players.forEach(player => {
+                        const option = document.createElement('option');
+                        option.value = player.playerNo;
+                        option.text = `${player.playerName} ${player.playerSurname}`;
+                        homeGoalScorerSelect.appendChild(option);
+                    });
+                } else {
+                    console.error('Home Goal Scorer dropdown not found');
+                }
+            }
+    
+            function updateAwayGoalScorerDropdown(teamName) {
+                if (awayGoalScorerSelect) {
+                    awayGoalScorerSelect.innerHTML = '<option value="" disabled selected>Away Goal Scorer</option>';
+                    const players = playerData.filter(p => p.teamName === teamName);
+    
+                    players.forEach(player => {
+                        const option = document.createElement('option');
+                        option.value = player.playerNo;
+                        option.text = `${player.playerName} ${player.playerSurname}`;
+                        awayGoalScorerSelect.appendChild(option);
+                    });
+                } else {
+                    console.error('Away Goal Scorer dropdown not found');
+                }
+            }
+        }
+    
+        function updateTeamInfo(type, team, strip) {
+            if (controlWindow && team) {
+                controlWindow.postMessage({ type, team, strip }, '*');
+            }
+        }
+    
+        document.getElementById('homeGoalButton').addEventListener('click', () => {
+            const selectedPlayer = document.getElementById('homeGoalScorerSelect').value;
+            const selectedPlayerName = document.getElementById('homeGoalScorerSelect').selectedOptions[0].text;
+            
+            if (selectedPlayer) {
+                controlWindow.postMessage({ 
+                    type: 'homeGoal', 
+                    player: selectedPlayerName 
+                }, '*');
+            }
+        });
+    
+        document.getElementById('awayGoalButton').addEventListener('click', () => {
+            const selectedPlayer = document.getElementById('awayGoalScorerSelect').value;
+            const selectedPlayerName = document.getElementById('awayGoalScorerSelect').selectedOptions[0].text;
+    
+            if (selectedPlayer) {
+                controlWindow.postMessage({ 
+                    type: 'awayGoal', 
+                    player: selectedPlayerName 
+                }, '*');
+            }
+        });
+    </script>
+    
+    
+</body>
+
+</html>

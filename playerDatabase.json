@@ -1,0 +1,134 @@
+[
+  {
+    "playerNo": 1,
+    "playerName": "Yusuf",
+    "playerSurname": "Maart",
+    "teamName": "Kaizer Chiefs",
+    "playerPhotoFilename": "yusuf-maart.png"
+  },
+  {
+    "playerNo": 2,
+    "playerName": "Marcus",
+    "playerSurname": "Rashford",
+    "teamName": "Manchester United",
+    "playerPhotoFilename": "marcus-rashford.png"
+  },
+  {
+    "playerNo": 3,
+    "playerName": "Phil",
+    "playerSurname": "Foden",
+    "teamName": "Manchester City",
+    "playerPhotoFilename": "phil-foden.png"
+  },
+  {
+    "playerNo": 4,
+    "playerName": "Mohamed",
+    "playerSurname": "Salah",
+    "teamName": "Liverpool",
+    "playerPhotoFilename": "mohamed-salah.png"
+  },
+  {
+    "playerNo": 5,
+    "playerName": "Bukayo",
+    "playerSurname": "Saka",
+    "teamName": "Arsenal",
+    "playerPhotoFilename": "bukayo-saka.png"
+  },
+  {
+    "playerNo": 6,
+    "playerName": "Cole",
+    "playerSurname": "Palmer",
+    "teamName": "Chelsea",
+    "playerPhotoFilename": "cole-palmer.png"
+  },
+  {
+    "playerNo": 7,
+    "playerName": "Heung Min",
+    "playerSurname": "Son",
+    "teamName": "Tottenham Hotspur",
+    "playerPhotoFilename": "heung-min-son.png"
+  },
+  {
+    "playerNo": 8,
+    "playerName": "Kevin",
+    "playerSurname": "Noble",
+    "teamName": "West Ham United",
+    "playerPhotoFilename": "kevin-noble.png"
+  },
+  {
+    "playerNo": 9,
+    "playerName": "Jamie",
+    "playerSurname": "Vardy",
+    "teamName": "Leicester City",
+    "playerPhotoFilename": "jamie-vardy.png"
+  },
+  {
+    "playerNo": 10,
+    "playerName": "Kabelo",
+    "playerSurname": "Dlamini",
+    "teamName": "Orlando Pirates",
+    "playerPhotoFilename": "kabelo-dlamini.png"
+  },
+  {
+    "playerNo": 11,
+    "playerName": "Peter",
+    "playerSurname": "Shalulile",
+    "teamName": "Mamelodi Sundowns",
+    "playerPhotoFilename": "peter-shalulile.png"
+  },
+  {
+    "playerNo": 12,
+    "playerName": "Evans",
+    "playerSurname": "Rusike",
+    "teamName": "SuperSport United",
+    "playerPhotoFilename": "evans-rusike.png"
+  },
+  {
+    "playerNo": 13,
+    "playerName": "Khanyisa",
+    "playerSurname": "Mayo",
+    "teamName": "Cape Town City FC",
+    "playerPhotoFilename": "khanyisa-mayo.png"
+  },
+  {
+    "playerNo": 14,
+    "playerName": "George",
+    "playerSurname": "Maluleka",
+    "teamName": "AmaZulu FC",
+    "playerPhotoFilename": "george-maluleka.png"
+  },
+  {
+    "playerNo": 15,
+    "playerName": "Mikateko",
+    "playerSurname": "Makaringe",
+    "teamName": "Kaizer Chiefs",
+    "playerPhotoFilename": "mikateko-makaringe.png"
+  },
+  {
+    "playerNo": 16,
+    "playerName": "Bruno",
+    "playerSurname": "Fernandes",
+    "teamName": "Manchester United",
+    "playerPhotoFilename": "bruno-fernandes.png"
+  },
+  {"playerNo": 17,
+    "playerName": "Relebohile",
+    "playerSurname": "Mofokeng",
+    "teamName": "Orlando Pirates",
+    "playerPhotoFilename": "relebohile-mofokeng.png"
+  },
+  {
+    "playerNo": 18,
+    "playerName": "Christian",
+    "playerSurname": "Saile",
+    "teamName": "Kaizer Chiefs",
+    "playerPhotoFilename": "christian-saile.png"
+  },
+  {
+    "playerNo": 19,
+    "playerName": "Ashley",
+    "playerSurname": "Du\u00A0Preez",
+    "teamName": "Kaizer Chiefs",
+    "playerPhotoFilename": "ashley-du-preez.png"
+  }
+]

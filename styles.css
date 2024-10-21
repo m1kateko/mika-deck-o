@@ -1,0 +1,705 @@
+@import url(fonts/premier-league/stylesheet.css);
+
+body {
+    background-color: rgb(25, 251, 0);
+    /* background-image: url(img/ot-panorama.jpg); */
+    background-size: cover;
+    background-repeat:no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Premier League';
+    min-width: 700px;
+}
+
+/* BIG SCORE BUG */
+
+.big-score-bug {
+    color: black;
+    width: 70%;
+    height: 150px; /* Increased height to accommodate taller elements */
+    margin-bottom: 30px; /* Add breathing space at the bottom */
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* Ensure items stack vertically */
+    position: relative; /* Ensure relative positioning for absolute children */
+}
+
+.big-background-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(35%);
+    z-index: 0; /* Behind other content */
+}
+
+.big-parallelogram {
+    left: 50%;
+    width: 25%; /* Adjust width as needed */
+    height: 52%; /* Adjust height as needed */
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,0.3959494426751592) 0%, rgba(255,255,255,0.8) 40%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.8) 60%, rgba(255,255,255,0.40231886942675155) 100%);
+    background: rgb(0 0 0 / 22%);
+    transform-origin: left top;
+    transform: skew(230deg); /* Skew shape */
+    z-index: 0; /* Ensure they are behind the .teams div */ 
+}
+
+.big-top-parallelogram {
+    top: 50%; /* Adjust position */
+}
+
+.big-bottom-parallelogram {
+    top: calc(50% + 35px); /* Adjust position */
+}
+
+.big-teams {
+    display: flex;
+    width: 100%;
+    height: 42px;
+    align-items: center; /* Align items vertically center */
+    position: relative; /* Ensure stacking context */
+    z-index: 1; /* Above background shapes */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    overflow: hidden; /* Ensure child elements do not overflow the parent */
+}
+
+.big-home-team-colours, .big-away-team-colours {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.big-home-team-colours {
+    left: 0;
+    background-color: rgb(173, 40, 255); /* Example color, adjust as needed */
+}
+
+.big-away-team-colours {
+    right: 0;
+    background-color: rgb(173, 40, 255); /* Example color, adjust as needed */
+}
+
+.big-home-team {
+    color: white;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align to the left */
+    padding-left: 5px; /* Add some padding for breathing space */
+    box-sizing: border-box; /* Include padding in width calculation */
+    position: relative; /* Ensure stacking context */
+    z-index: 2; /* Ensure it is above the background color divs */
+}
+
+.big-away-team {
+    color: white;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align to the right */
+    padding-right: 5px; /* Add some padding for breathing space */
+    box-sizing: border-box; /* Include padding in width calculation */
+    position: relative; /* Ensure stacking context */
+    z-index: 2; /* Ensure it is above the background color divs */
+}
+
+.big-team-name {
+ /* Remove default margin */
+    width: 100%; /* Ensure it takes full width of its container */
+    font-weight: 800;
+    font-size: 1.2em;
+}
+
+.big-home-team-name {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 24%;
+}
+
+.big-away-team-name {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 24%;
+}
+
+.big-premier-league-logo {
+    position: absolute;
+    top: 23px; /* Adjust position */
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 40%; /* Adjust height to fit within the div */
+    z-index: 2; /* Ensure it appears above other content */
+}
+
+.big-team-score {
+    color: white;
+}
+
+.big-home-team-score,
+.big-away-team-score {
+    position: absolute;
+    font-size: 4.5em; /* Adjust font size as needed */
+    font-weight: 900;
+    margin: 0 5px; /* Add spacing between score and logo */
+    z-index: 2; /* Ensure they appear above other content */
+    top: 14px; /* Adjust position */
+}
+
+.big-home-team-score {
+    left: 42%;
+    transform: translateX(-50%);
+}
+
+.big-away-team-score {
+    right: 42%;
+    transform: translateX(50%);
+    text-shadow: 1px 1px #00000074;
+}
+
+.big-score-info {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px;
+    font-size: 80%;
+    height: 10%;
+    position: relative; /* Ensure relative positioning for absolute child */
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.small-time {
+    font-size: 80%;
+}
+
+.big-time {
+    font-size: 150%;
+}
+
+.big-home-team-info,
+.big-away-team-info {
+    flex: 1; /* Take up equal space */
+    text-align: left; /* Align home-team-info to the left */
+}
+
+.big-home-team-info {
+    margin-right: 12%;
+    text-align: right; /* Align away-team-info to the right */
+}
+
+.big-away-team-info {
+    margin-left: 12%;
+    text-align: left; /* Align away-team-info to the right */
+}
+
+.big-purple-block {
+    background-color: rgb(70, 2, 188);
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    width: 20%;
+    height: 110%;
+    display: flex;
+    align-items: center; /* Center vertically */
+}
+
+.big-purple-block span {
+    text-transform: uppercase;
+    margin: 0 auto; /* Remove default margin */
+    font-weight: 900;
+}
+
+.big-team-logo {
+    position: absolute;
+    width: auto; /* Adjust size as needed */
+    height: 67%; /* Maintain aspect ratio */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2; /* Ensure logos appear above other content */
+}
+
+.big-home-logo {
+    left: -50px; /* Adjust position to be half inside and half outside */
+}
+
+.big-away-logo {
+    right: -50px; /* Adjust position to be half inside and half outside */
+}
+
+.big-scorer {
+    font-weight: 500;
+    font-style: normal;
+    border: 1px;
+}
+
+/* SMALL SCORE BUG */
+
+.small-score-bug {
+    color: black;
+    width: 20%;
+    height: 150px; /* Increased height to accommodate taller elements */
+    position: absolute; /* Change from relative to absolute */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    margin-left: 5%; /* Add some margin to separate from the edge */
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* Ensure items stack vertically */
+}
+
+.small-background-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180%;
+    height: 100%;
+    transform: translateX(13%);
+    z-index: 0; /* Behind other content */
+}
+
+.small-parallelogram {
+    left: 50%;
+    width: 25%;
+    height: 52%;
+    background: rgb(0 0 0 / 22%);
+    transform-origin: left top;
+    transform: skew(230deg);
+    z-index: 0;
+}
+
+.small-top-parallelogram {
+    top: 50%; /* Adjust position */
+}
+
+.small-bottom-parallelogram {
+    top: calc(50% + 35px); /* Adjust position */
+}
+
+.small-teams {
+    display: flex;
+    width: 100%;
+    height: 31px;
+    align-items: center; /* Align items vertically center */
+    position: relative; /* Ensure stacking context */
+    z-index: 1; /* Above background shapes */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    overflow: hidden; /* Ensure child elements do not overflow the parent */
+}
+
+.small-home-team-colours, .small-away-team-colours {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.small-home-team-colours {
+    left: 0;
+    background-color: rgb(173, 40, 255); /* Example color, adjust as needed */
+}
+
+.small-away-team-colours {
+    right: 0;
+    background-color: rgb(173, 40, 255); /* Example color, adjust as needed */
+}
+
+.small-home-team {
+    color: white;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align to the left */
+    padding-left: 5px; /* Add some padding for breathing space */
+    box-sizing: border-box; /* Include padding in width calculation */
+    position: relative; /* Ensure stacking context */
+    z-index: 2; /* Ensure it is above the background color divs */
+}
+
+.small-away-team {
+    color: white;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align to the right */
+    padding-right: 5px; /* Add some padding for breathing space */
+    box-sizing: border-box; /* Include padding in width calculation */
+    position: relative; /* Ensure stacking context */
+    z-index: 2; /* Ensure it is above the background color divs */
+}
+
+.small-team-name {
+ /* Remove default margin */
+ width: 100%; /* Ensure it takes full width of its container */
+ font-weight: 800;
+ font-size: 1.4em;
+}
+
+.small-home-team-name {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 0%;
+}
+
+.small-away-team-name {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 0%;
+}
+
+.small-premier-league-logo {
+    position: absolute;
+    top: 32px; /* Adjust position */
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 32%; /* Adjust height to fit within the div */
+    z-index: 2; /* Ensure it appears above other content */
+}
+
+.small-team-score {
+    color: white;
+}
+
+.small-home-team-score,
+.small-away-team-score {
+    position: absolute;
+    font-size: 3.0em; /* Adjust font size as needed */
+    font-weight: 900;
+    margin: 0 5px; /* Add spacing between score and logo */
+    z-index: 2; /* Ensure they appear above other content */
+    top: 28px; /* Adjust position */
+}
+
+.small-home-team-score {
+    left: 32%;
+    transform: translateX(-50%);
+}
+
+.small-away-team-score {
+    right: 32%;
+    transform: translateX(50%);
+    text-shadow: 1px 1px #00000074;
+}
+
+.small-score-info {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 10px;
+    font-size: 100%;
+    height: 10%;
+    position: relative; /* Ensure relative positioning for absolute child */
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.small-home-team-info,
+.small-away-team-info {
+    flex: 1; /* Take up equal space */
+    text-align: left; /* Align home-team-info to the left */
+}
+
+.small-home-team-info {
+    margin-right: 12%;
+    text-align: right; /* Align away-team-info to the right */
+}
+
+.small-away-team-info {
+    margin-left: 12%;
+    text-align: left; /* Align away-team-info to the right */
+}
+
+.small-purple-block {
+    background-color: rgb(70, 2, 188);
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    width: 46%;
+    height: 87%;
+    display: flex;
+    align-items: center; /* Center vertically */
+}
+
+.small-purple-block span {
+    text-transform: uppercase;
+    margin: 0 auto; /* Remove default margin */
+    font-weight: 900;
+}
+
+.bg-parallelogram-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120%;
+    height: 120%;
+    z-index: 1; /* Behind other content */
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    /* padding-right: 77px; */
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+}
+
+.bg-parallelogram {
+    width: 21%; /* Adjust width of each parallelogram */
+    height: 59%; /* Adjust height of each parallelogram */
+    background-color: #00000012; /* Adjust background color */
+    transform: skew(232deg); /* Adjust skew angle */
+    margin: 0 0 0 10%; /* Add margin for spacing on left and right */
+}
+
+
+.main-screen {
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    height: 100%;
+    z-index: 3; /* Ensure above background */
+    font-family: 'Premier League';
+    font-weight: 900;
+    opacity: 0;
+    visibility: hidden;
+    
+}
+
+.main-screen.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.home-main-screen {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(173, 40, 255);
+    height: 100%; /* Take up full height of .main-screen */
+    
+}
+
+.away-main-screen {
+    width: 50%;
+    display: flex;
+    flex-direction: column-reverse;
+    background-color: rgb(132, 30, 195); 
+    height: 100%; /* Take up full height of .main-screen */
+}
+
+.home-team-name-main-screen {
+    width: 100%;
+    height: 60%; /* Adjusted to 60% height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6em; /* Responsive font size */
+    text-align: center; /* Center align text */
+    z-index: 21;
+    color: #ffffff;
+}
+
+.away-team-name-main-screen {
+    width: 100%;
+    height: 60%; /* Adjusted to 60% height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6em; /* Responsive font size */
+    text-align: center; /* Center align text */
+    z-index: 99;
+    color: #fff;
+}
+
+.home-team-heading,
+.away-team-heading {
+    font-weight: 900;
+}
+
+.home-team-logo-main-screen {
+    width: 80%;
+    height: 40%; /* Adjusted to 40% height */
+    display: flex;
+    justify-content: center;
+    z-index: 99;
+    /* bottom: auto; */
+    display: flex;
+    align-items: flex-start;
+}
+
+.away-team-logo-main-screen {
+    width: 80%;
+    height: 40%; /* Adjusted to 40% height */
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    z-index: 9;
+}
+
+.home-team-logo-main-screen img,
+.away-team-logo-main-screen img {
+    max-width: 40%;
+    z-index: 90;
+}
+
+.main-screen-premier-league-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 15%; /* Adjust size as needed */
+    z-index: 99; /* Above main content */
+}
+
+.main-screen-premier-league-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+
+.home-team-name-main-screen, .away-team-name-main-screen {
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    transition: transform 0.5s ease, opacity 0.5s ease; 
+}
+
+.home-team-name-main-screen.show, 
+.away-team-name-main-screen.show {
+    animation-name: slideInDown;
+}
+
+.home-team-name-main-screen.hide, 
+.away-team-name-main-screen.hide {
+    animation-name: slideOutUp;
+}
+
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: scale(0.8); /* Slightly smaller to create a scaling effect */
+    }
+    to {
+        opacity: 1;
+        transform: scale(1); /* Normal size */
+    }
+}
+
+@keyframes hide {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.big-score-bug {
+    color: black;
+    width: 70%;
+    height: 150px; /* Increased height to accommodate taller elements */
+    margin-bottom: 30px; /* Add breathing space at the bottom */
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* Ensure items stack vertically */
+    position: relative; /* Ensure relative positioning for absolute children */
+    opacity: 0; /* Start hidden */
+    transform: scale(0.8); /* Start scaled down */
+    transition: width 0.6s ease; /* Animate width change */
+    animation-duration: 0.6s; /* Duration of reveal/hide animation */
+}
+
+.big-score-bug.show {
+    opacity: 1;
+    transform: scale(1);
+    animation-name: reveal;
+}
+
+.big-score-bug.hide {
+    animation-name: hide;
+}
+
+
+/* Position the tv-logo in the top right corner */
+.tv-logo {
+    position: absolute; /* Use absolute positioning to place it exactly where you want */
+    top: 3%; /* Align to the top of the container */
+    right: 0; /* Align to the right of the container */
+    padding-top: 10px; /* Optional: Add some padding for spacing from the edges */
+    z-index: 2; /* Ensure it appears above other elements if needed */
+    margin-right: 5%;
+}
+
+.tv-logo img {
+    display: block; /* Ensure the image is displayed as a block element */
+    width: auto; /* Maintain the aspect ratio of the image */
+    height: 70px; /* Adjust the height as needed */
+}
+
+.small-score-bug {
+    color: black;
+    width: 20%;
+    height: 150px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 1; /* Ensure it's visible initially */
+    visibility: visible; /* Make sure it's visible initially */
+    transition: opacity 0.6s ease, visibility 0.6s ease; /* Smooth transition */
+}
+
+.small-score-bug.hidden {
+    opacity: 0; /* Fade out */
+    visibility: hidden; /* Hide element */
+}
+
+/* Other existing styles... */

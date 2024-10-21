@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Score Bug</title>
+</head>
+<body>
+    <div class="main-screen">
+        <div class="home-main-screen">
+            <div class="home-team-name-main-screen">
+                <h1 class="home-team-heading">HOM</h1>
+            </div>
+            <div class="home-team-logo-main-screen">
+                <img class="bg-logo-home" src="img/clubs/placeholders/home-team.png">
+            </div> 
+        </div>
+        <div class="bg-parallelogram-container">
+            <!-- Repeat this div to create more bg-parallelograms -->
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+            <div class="bg-parallelogram"></div>
+        </div>
+        <div class="away-main-screen">
+            <div class="away-team-name-main-screen">
+                <h1 class="away-team-heading">AWA</h1>
+            </div>
+            <div class="away-team-logo-main-screen">
+                <img class="bg-logo-away" src="img/clubs/placeholders/away-team.png">
+            </div> 
+        </div>
+        <div class="main-screen-premier-league-logo">
+            <img src="img/premier-league-logo.png" alt="Premier League Logo">
+        </div>
+    </div>
+
+    
+
+    <div class="small-score-bug">
+        <div class="small-teams">
+            <div class="small-home-team-colours"></div>
+            <div class="small-away-team-colours"></div>
+            <div class="small-background-shapes">
+                <div class="small-parallelogram small-top-parallelogram"></div>
+                <div class="small-parallelogram small-bottom-parallelogram"></div>
+            </div>
+            <div class="small-home-team">
+                <p class="small-team-name small-home-team-name">HOM</p>
+            </div>
+            <div class="small-away-team">
+                <p class="small-team-name small-away-team-name">AWA</p>
+            </div>
+        </div>
+        
+        <img src="img/premier-league-logo.png" alt="Premier League Logo" class="small-premier-league-logo">
+        <div class="small-team-score small-home-team-score">0</div>
+        <div class="small-team-score small-away-team-score">0</div>
+        <div class="small-score-info">
+            <div class="small-home-team-info"></div>
+            <div class="small-purple-block stopwatch">
+                <span class="small-time" id="small-time">00:00</span>
+            </div>
+            <div class="small-away-team-info"></div>
+        </div>
+    </div>
+    <div class="big-score-bug">
+        <img src="img/clubs/placeholders/home-team.png" alt="Manchester United Logo" class="big-team-logo big-home-logo">
+        <img src="img/clubs/placeholders/away-team.png" alt="Manchester City Logo" class="big-team-logo big-away-logo">
+        <div class="big-teams">
+            <div class="big-home-team-colours"></div>
+            <div class="big-away-team-colours"></div>
+            <div class="big-background-shapes">
+                <div class="big-parallelogram big-top-parallelogram"></div>
+                <div class="big-parallelogram big-bottom-parallelogram"></div>
+            </div>
+            <div class="big-home-team">
+                <p class="big-team-name big-home-team-name">Home Team</p>
+            </div>
+            <div class="big-away-team">
+                <p class="big-team-name big-away-team-name">Away Team</p>
+            </div>
+        </div>
+        <img src="img/premier-league-logo.png" alt="Premier League Logo" class="big-premier-league-logo">
+        <div class="big-team-score big-home-team-score">0</div>
+        <div class="big-team-score big-away-team-score">0</div>
+        <div class="big-score-info">
+            <div class="big-home-team-info"></div>
+            <div class="big-purple-block stopwatch">
+                <span class="big-time" id="big-time">00:00</span>
+            </div>
+            <div class="big-away-team-info"></div>
+        </div>
+        
+    </div>
+    <div class="tv-logo"><img class="supersport" src="img/supers-sport-variety-3-logo.png"></div>
+    <script>
+       
+        let elapsedSeconds = 0;
+        let stopwatchInterval;
+        let isPaused = true;
+        let lastPausedAt = 0;
+
+        function updateTime() {
+            elapsedSeconds++;
+            const minutes = Math.floor(elapsedSeconds / 60).toString().padStart(2, '0');
+            const seconds = (elapsedSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('small-time').innerText = `${minutes}:${seconds}`;
+            document.getElementById('big-time').innerText = `${minutes}:${seconds}`;
+
+            if (elapsedSeconds === 45 * 60 || elapsedSeconds === 90 * 60) {
+                clearInterval(stopwatchInterval);
+                isPaused = true;
+                lastPausedAt = elapsedSeconds;
+            }
+        }
+
+        window.addEventListener('message', (event) => {
+            if (event.data === 'play') {
+                if (isPaused) {
+                    isPaused = false;
+                    if (elapsedSeconds === lastPausedAt) {
+                        stopwatchInterval = setInterval(updateTime, 4.44);
+                    } else {
+                        elapsedSeconds = lastPausedAt;
+                        stopwatchInterval = setInterval(updateTime, 4.44);
+                    }
+                }
+            } else if (event.data === 'pause') {
+                clearInterval(stopwatchInterval);
+                isPaused = true;
+                lastPausedAt = elapsedSeconds;
+            } else if (event.data.type && event.data.team) {
+                updateTeamDetails(event.data.type, event.data.team, event.data.strip);
+            } else if (event.data.type && event.data.player) {
+                updateScore(event.data.type, event.data.player);
+            }
+        });
+
+        function updateTeamDetails(type, team, strip) {
+    if (type === 'home') {
+        if (strip === 'home') {
+            document.querySelector('.big-home-team-name').textContent = team.teamName;
+            document.querySelector('.big-home-team-name').style.color = team.homeColourB;
+            document.querySelector('.big-home-team-colours').style.backgroundColor = team.homeColourA;
+            document.querySelector('.small-home-team-name').textContent = team.smallTeamName;
+            document.querySelector('.small-home-team-colours').style.backgroundColor = team.homeColourA;
+            document.querySelector('.small-home-team-name').style.color = team.homeColourB;
+            document.querySelector('.home-main-screen').style.backgroundColor = team.homeColourA;
+            document.querySelector('.home-team-name-main-screen').textContent = team.smallTeamName;
+            document.querySelector('.home-team-name-main-screen').style.color = team.homeColourB;
+            document.querySelector('.home-team-name-main-screen').style.fontSize = '13em';
+
+        } else if (strip === 'away') {
+            document.querySelector('.big-home-team-name').textContent = team.teamName;
+            document.querySelector('.big-home-team-name').style.color = team.awayColourB;
+            document.querySelector('.big-home-team-colours').style.backgroundColor = team.awayColourA;
+            document.querySelector('.small-home-team-name').textContent = team.smallTeamName;
+            document.querySelector('.small-home-team-colours').style.backgroundColor = team.awayColourA;
+            document.querySelector('.small-home-team-name').style.color = team.awayColourB;
+            document.querySelector('.home-main-screen').style.backgroundColor = team.awayColourA;
+            document.querySelector('.home-team-name-main-screen').textContent = team.smallTeamName;
+            document.querySelector('.home-team-name-main-screen').style.color = team.awayColourB;
+            document.querySelector('.home-team-name-main-screen').style.fontSize = '13em';
+
+        } else if (strip === 'third' && team.thirdColourA && team.thirdColourB) {
+            document.querySelector('.big-home-team-name').textContent = team.teamName;
+            document.querySelector('.big-home-team-name').style.color = team.thirdColourB;
+            document.querySelector('.big-home-team-colours').style.backgroundColor = team.thirdColourA;
+            document.querySelector('.small-home-team-name').textContent = team.smallTeamName;
+            document.querySelector('.small-home-team-colours').style.backgroundColor = team.thirdColourA;
+            document.querySelector('.small-home-team-name').style.color = team.thirdColourB;
+            document.querySelector('.home-main-screen').style.backgroundColor = team.thirdColourA;
+            document.querySelector('.home-team-name-main-screen').textContent = team.smallTeamName;
+            document.querySelector('.home-team-name-main-screen').style.color = team.thirdColourB;
+            document.querySelector('.home-team-name-main-screen').style.fontSize = '13em';
+        }
+
+        const homeLogo = document.querySelector('.big-home-logo');
+        const bgLogoHome = document.querySelector('.bg-logo-home');
+
+        if (homeLogo) {
+            homeLogo.src = `img/clubs/${team.logoFilename}`;
+        }
+
+        if (bgLogoHome) {
+            bgLogoHome.src = `img/clubs/${team.logoFilename}`;
+        }
+
+    } else if (type === 'away') {
+        if (strip === 'home') {
+            document.querySelector('.big-away-team-name').textContent = team.teamName;
+            document.querySelector('.big-away-team-name').style.color = team.homeColourB;
+            document.querySelector('.big-away-team-colours').style.backgroundColor = team.homeColourA;
+            document.querySelector('.small-away-team-name').textContent = team.smallTeamName;
+            document.querySelector('.small-away-team-colours').style.backgroundColor = team.homeColourA;
+            document.querySelector('.small-away-team-name').style.color = team.homeColourB;
+            document.querySelector('.away-main-screen').style.backgroundColor = team.homeColourA;
+            document.querySelector('.away-team-name-main-screen').textContent = team.smallTeamName;
+            document.querySelector('.away-team-name-main-screen').style.color = team.homeColourB;
+            document.querySelector('.away-team-name-main-screen').style.fontSize = '13em';
+
+        } else if (strip === 'away') {
+            document.querySelector('.big-away-team-name').textContent = team.teamName;
+            document.querySelector('.big-away-team-name').style.color = team.awayColourB;
+            document.querySelector('.big-away-team-colours').style.backgroundColor = team.awayColourA;
+            document.querySelector('.small-away-team-name').textContent = team.smallTeamName;
+            document.querySelector('.small-away-team-colours').style.backgroundColor = team.awayColourA;
+            document.querySelector('.small-away-team-name').style.color = team.awayColourB;
+            document.querySelector('.away-main-screen').style.backgroundColor = team.awayColourA;
+            document.querySelector('.away-team-name-main-screen').textContent = team.smallTeamName;
+            document.querySelector('.away-team-name-main-screen').style.color = team.awayColourB;
+            document.querySelector('.away-team-name-main-screen').style.fontSize = '13em';
+
+        } else if (strip === 'third' && team.thirdColourA && team.thirdColourB) {
+            document.querySelector('.big-away-team-name').textContent = team.teamName;
+            document.querySelector('.big-away-team-name').style.color = team.thirdColourB;
+            document.querySelector('.big-away-team-colours').style.backgroundColor = team.thirdColourA;
+            document.querySelector('.small-away-team-name').textContent = team.smallTeamName;
+            document.querySelector('.small-away-team-colours').style.backgroundColor = team.thirdColourA;
+            document.querySelector('.small-away-team-name').style.color = team.thirdColourB;
+            document.querySelector('.away-main-screen').style.backgroundColor = team.thirdColourA;
+            document.querySelector('.away-team-name-main-screen').textContent = team.smallTeamName;
+            document.querySelector('.away-team-name-main-screen').style.color = team.thirdColourB;
+            document.querySelector('.away-team-name-main-screen').style.fontSize = '13em';
+        }
+
+        const awayLogo = document.querySelector('.big-away-logo');
+        const bgLogoAway = document.querySelector('.bg-logo-away');
+
+        if (awayLogo) {
+            awayLogo.src = `img/clubs/${team.logoFilename}`;
+        }
+
+        if (bgLogoAway) {
+            bgLogoAway.src = `img/clubs/${team.logoFilename}`;
+        }
+    }
+}
+
+
+
+        function updateScore(type, player) {
+            const homeScoreElement = document.querySelector('.small-home-team-score');
+            const bigHomeScoreElement = document.querySelector('.big-home-team-score');
+            const awayScoreElement = document.querySelector('.small-away-team-score');
+            const bigAwayScoreElement = document.querySelector('.big-away-team-score');
+            const homeTeamInfo = document.querySelector('.big-home-team-info');
+            const awayTeamInfo = document.querySelector('.big-away-team-info');
+
+            if (type === 'homeGoal') {
+                const homeScore = parseInt(homeScoreElement.innerText) + 1;
+                homeScoreElement.innerText = homeScore;
+                bigHomeScoreElement.innerText = homeScore;
+
+                addGoalToInfo(homeTeamInfo, player);
+            } else if (type === 'awayGoal') {
+                const awayScore = parseInt(awayScoreElement.innerText) + 1;
+                awayScoreElement.innerText = awayScore;
+                bigAwayScoreElement.innerText = awayScore;
+
+                addGoalToInfo(awayTeamInfo, player);
+            }
+        }
+
+        function addGoalToInfo(teamInfoElement, player) {
+    const currentTime = document.getElementById('big-time').innerText.split(':');
+    const minutes = Math.floor(parseInt(currentTime[0]) + 1); // +1 to account for the fact the goal is counted at the end of the minute
+
+    const playerName = player.split(' ').pop(); // Extract surname from player name
+    const goalText = `${minutes}'`;
+
+    let existingGoals = teamInfoElement.textContent.split(',').map(goal => goal.trim());
+    let playerGoals = existingGoals.filter(goal => goal.startsWith(playerName));
+
+    if (playerGoals.length > 0) {
+        // Update existing entry for the player
+        playerGoals[0] = `${playerName} ${playerGoals[0].substring(playerName.length + 1)} ${goalText}`;
+        existingGoals = existingGoals.filter(goal => !goal.startsWith(playerName)).concat(playerGoals);
+    } else {
+        // Add new entry for the player
+        existingGoals.push(`${playerName} ${goalText}`);
+    }
+
+    // Remove leading or trailing commas and extra spaces
+    existingGoals = existingGoals.map(goal => goal.trim());
+
+    // Function to extract the first goal time for sorting
+    function getFirstGoalTime(goalString) {
+        const match = goalString.match(/(\d+)'/);
+        return match ? parseInt(match[1]) : Infinity;
+    }
+
+    // Sort goals so that the first goal scorer appears first
+    existingGoals.sort((a, b) => getFirstGoalTime(a) - getFirstGoalTime(b));
+
+    teamInfoElement.textContent = existingGoals.join(', ').replace(/^\s*,\s*|\s*,\s*$/, '');
+}
+
+window.addEventListener('message', (event) => {
+    if (event.data === 'toggleSmallScore') {
+        const mainScreen = document.querySelector('.small-score-bug');
+        if (mainScreen) {
+            if (mainScreen.classList.contains('hidden')) {
+                mainScreen.classList.remove('hidden');
+            } else {
+                mainScreen.classList.add('hidden');
+            }
+        }
+    }
+});
+
+
+        window.addEventListener('message', (event) => {
+    if (event.data === 'toggleBigScore') {
+        const mainScreen = document.querySelector('.big-score-bug');
+        if (mainScreen) {
+            if (mainScreen.style.display === 'none' || !mainScreen.style.display) {
+                mainScreen.style.display = 'flex';
+                mainScreen.classList.remove('hide');
+                mainScreen.classList.add('show');
+            } else {
+                mainScreen.classList.remove('show');
+                mainScreen.classList.add('hide');
+                // Use a timeout to hide the element after the animation ends
+                setTimeout(() => {
+                    mainScreen.style.display = 'none';
+                }, 600); // Match the animation duration
+            }
+        }
+    }
+});
+
+window.addEventListener('message', (event) => {
+    if (event.data === 'toggleFullScreen') {
+        const mainScreen = document.querySelector('.main-screen');
+        const homeTeamHeading = document.querySelector('.home-team-name-main-screen');
+        const awayTeamHeading = document.querySelector('.away-team-name-main-screen');
+        
+        if (mainScreen) {
+            if (mainScreen.classList.contains('show')) {
+                // Remove the animation class to trigger the slide-out animation
+                homeTeamHeading.classList.remove('show');
+                homeTeamHeading.classList.add('hide');
+                awayTeamHeading.classList.remove('show');
+                awayTeamHeading.classList.add('hide');
+                
+                // Wait for the animation to finish before hiding the main screen
+                setTimeout(() => {
+                    mainScreen.classList.remove('show');
+                    homeTeamHeading.classList.remove('hide');
+                    awayTeamHeading.classList.remove('hide');
+                }, 500);
+            } else {
+                mainScreen.classList.add('show');
+                mainScreen.style.position = 'fixed'; // Ensure it's positioned fixed
+                
+                // Add the animation class to trigger the slide-in animation
+                homeTeamHeading.classList.remove('hide');
+                homeTeamHeading.classList.add('show');
+                awayTeamHeading.classList.remove('hide');
+                awayTeamHeading.classList.add('show');
+            }
+        }
+    }
+});
+
+
+
+    </script>
+</body>
+</html>

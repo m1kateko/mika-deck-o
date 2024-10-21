@@ -1,0 +1,154 @@
+[
+  {
+    "teamNo": 1,
+    "teamName": "Kaizer Chiefs",
+    "smallTeamName": "CHI",
+    "homeColourA": "#fcaf33",
+    "homeColourB": "#231f20",
+    "awayColourA": "#264439",
+    "awayColourB": "#fcaf33",
+    "logoFilename": "kaizer-chiefs.png"
+  },
+  {
+    "teamNo": 2,
+    "teamName": "Manchester United",
+    "smallTeamName": "MUN",
+    "homeColourA": "#da020e",
+    "homeColourB": "#ffffff",
+    "awayColourA": "#1c4549",
+    "awayColourB": "#ffffff",
+    "thirdColourA": "#f3f3f3",
+    "thirdColourB": "#da020e",
+    "logoFilename": "manchester-united.png"
+  },
+  {
+    "teamNo": 3,
+    "teamName": "Manchester City",
+    "smallTeamName": "MCI",
+    "homeColourA": "#6cadde",
+    "homeColourB": "#00285d",
+    "awayColourA": "#f3f3f3",
+    "awayColourB": "#5a2732",
+    "thirdColourA": "#1f2329",
+    "thirdColourB": "#24e3f2",
+    "logoFilename": "manchester-city.png"
+  },
+  {
+    "teamNo": 4,
+    "teamName": "Liverpool",
+    "smallTeamName": "LIV",
+    "homeColourA": "#d10019",
+    "homeColourB": "#ffffff",
+    "awayColourA": "#f3f3f3",
+    "awayColourB": "#00853d",
+    "thirdColourA": "#7d6db3",
+    "thirdColourB": "#302f31",
+    "logoFilename": "liverpool.png"
+  },
+  {
+    "teamNo": 5,
+    "teamName": "Arsenal",
+    "smallTeamName": "ARS",
+    "homeColourA": "#ef0107",
+    "homeColourB": "#ffffff",
+    "awayColourA": "#c6ed4d",
+    "awayColourB": "#003332",
+    "thirdColourA": "#0a8295",
+    "thirdColourB": "#0a1a43",
+    "logoFilename": "arsenal.png"
+  },
+  {
+    "teamNo": 6,
+    "teamName": "Chelsea",
+    "smallTeamName": "CHE",
+    "homeColourA": "#001489",
+    "homeColourB": "#ffffff",
+    "awayColourA": "#182334",
+    "awayColourB": "#0080d8",
+    "thirdColourA": "#e0f6eb",
+    "thirdColourB": "#1f1d1e",
+    "logoFilename": "chelsea.png"
+  },
+  {
+    "teamNo": 7,
+    "teamName": "Tottenham Hotspur",
+    "smallTeamName": "TOT",
+    "homeColourA": "#f3f3f3",
+    "homeColourB": "#001559",
+    "awayColourA": "#2e3552",
+    "awayColourB": "#4870af",
+    "thirdColourA": "#b89f9c",
+    "thirdColourB": "#18191c",
+    "logoFilename": "tottenham-hotspur.png"
+  },
+  {
+    "teamNo": 8,
+    "teamName": "West Ham United",
+    "smallTeamName": "WHU",
+    "homeColourA": "#7c2c3b",
+    "homeColourB": "#2dafe5",
+    "awayColourA": "#ffffff",
+    "awayColourB": "#7c2c3b",
+    "logoFilename": "west-ham-united.png"
+  },
+  {
+    "teamNo": 9,
+    "teamName": "Leicester City",
+    "smallTeamName": "LEI",
+    "homeColourA": "#0053a0",
+    "homeColourB": "#ffffff",
+    "awayColourA": "#55535a",
+    "awayColourB": "#abe3ef",
+    "logoFilename": "leicester-city.png"
+  },
+  {
+    "teamNo": 10,
+    "teamName": "Orlando Pirates",
+    "smallTeamName": "PIR",
+    "homeColourA": "#161616",
+    "homeColourB": "#ffffff",
+    "awayColourA": "#6ab9b1",
+    "awayColourB": "#ca1d2e",
+    "logoFilename": "orlando-pirates.png"
+  },
+  {
+    "teamNo": 11,
+    "teamName": "Mamelodi Sundowns",
+    "smallTeamName": "SUN",
+    "homeColourA": "#f6e600",
+    "homeColourB": "#00a04a",
+    "awayColourA": "#0b71ba",
+    "awayColourB": "#f6e600",
+    "logoFilename": "mamelodi-sundowns.png"
+  },
+  {
+    "teamNo": 12,
+    "teamName": "SuperSport United",
+    "smallTeamName": "SSU",
+    "homeColourA": "#003461",
+    "homeColourB": "#ffffff",
+    "awayColourA": "#9acfef",
+    "awayColourB": "#be1918",
+    "logoFilename": "supersport-united.png"
+  },
+  {
+    "teamNo": 13,
+    "teamName": "Cape Town City FC",
+    "smallTeamName": "CTC",
+    "homeColourA": "#251dae",
+    "homeColourB": "#cb992c",
+    "awayColourA": "#e3c525",
+    "awayColourB": "#373960",
+    "logoFilename": "cape-town-city-fc.png"
+  },
+  {
+    "teamNo": 14,
+    "teamName": "AmaZulu FC",
+    "smallTeamName": "AMA",
+    "homeColourA": "#099939",
+    "homeColourB": "#ffffff",
+    "awayColourA": "#f3f3f3",
+    "awayColourB": "#099939",
+    "logoFilename": "amazulu-fc.png"
+  }
+]
